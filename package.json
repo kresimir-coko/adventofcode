@@ -1,0 +1,12 @@
+{
+  "name": "adventofcode",
+  "version": "1.0.0",
+  "description": "Advent of Code (https://adventofcode.com) is an advent calendar of programming puzzles. Every day from December 1st to December 25th a new puzzle is released. Let's participate",
+  "main": "index.js",
+  "repository": "https://github.com/kresimir-coko/adventofcode.git",
+  "author": "Krešimir Čoko <kresimir.coko@liferay.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+  }
+}
