@@ -5,11 +5,56 @@ const measurements = fs.readFileSync("./measurements.txt", {
   flag: "r",
 });
 
-const measurementsArray = measurements.split("\n");
+let measurementsArray = measurements.split("\n");
 
+// Day 1 Part 1
 const filteredArray = measurementsArray.filter(
   (measurement, index) =>
     parseInt(measurement) > parseInt(measurementsArray[index - 1])
 );
 
-console.log("filteredArray: ", filteredArray.length);
+// Day 1 Part 2
+measurementsArray = measurementsArray.map((measurement) =>
+  parseInt(measurement)
+);
+
+const arrayWindow = () => {
+  let arrayLength = measurementsArray.length;
+  let result = [];
+
+  for (let i = 0; i < arrayLength; i++) {
+    let slicedArray = measurementsArray.slice(i, i + 3);
+
+    if (slicedArray && slicedArray.length === 3) {
+      result.push(slicedArray);
+
+      continue;
+    }
+
+    break;
+  }
+
+  return result;
+};
+
+const measurementsArrayWindow = arrayWindow();
+
+const listOfMeasurementSums = measurementsArrayWindow.map((measurement) => {
+  let measurementSum = 0;
+
+  measurement.forEach((measurement) => {
+    measurementSum += measurement;
+  });
+
+  return measurementSum;
+});
+
+let incrementCount = 0;
+
+listOfMeasurementSums.forEach((sum, i) => {
+  if (sum < listOfMeasurementSums[i + 1]) {
+    incrementCount++;
+  }
+});
+
+console.log("incrementCount: ", incrementCount);
