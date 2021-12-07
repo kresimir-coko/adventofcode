@@ -8,26 +8,22 @@ const commandsFile = fs.readFileSync("./commands.txt", {
 let commands = commandsFile.split("\n");
 
 let coordinates = {
+  aim: 0,
   depth: 0,
   location: 0,
 };
 
-function goForward(speed) {
-  console.log(`Going forward at ${speed}`);
-
-  coordinates.location += parseInt(speed);
+function goForward(amount) {
+  coordinates.location += parseInt(amount);
+  coordinates.depth += parseInt(amount) * coordinates.aim;
 }
 
-function goDeeper(drop) {
-  console.log(`Going deeper at ${drop}`);
-
-  coordinates.depth += parseInt(drop);
+function incrementAim(amount) {
+  coordinates.aim += parseInt(amount);
 }
 
-function goHigher(rise) {
-  console.log(`Going higher at ${rise}`);
-
-  coordinates.depth -= parseInt(rise);
+function decrementAim(amount) {
+  coordinates.aim -= parseInt(amount);
 }
 
 commands.forEach((command) => {
@@ -38,11 +34,11 @@ commands.forEach((command) => {
   } else if (command.includes("down")) {
     const value = command.charAt(command.length - 1);
 
-    goDeeper(value);
+    incrementAim(value);
   } else {
     const value = command.charAt(command.length - 1);
 
-    goHigher(value);
+    decrementAim(value);
   }
 });
 
